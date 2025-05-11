@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MediBot - AI-powered Medical Assistant">
+    <title>MediBot - Medical AI Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/medibot.css') }}">
+</head>
+<body>
+    <header class="header" role="banner">
+        <h1>MediBot 🤖</h1>
+        <p class="tagline">Your Intelligent Medical Assistant</p>
+    </header>
+
+    <main class="chat-container" role="main">
+        <!-- Error Message Container -->
+        <div class="error-message hidden" id="error-message" role="alert"></div>
+
+        <section class="chat-messages" id="chat-messages" aria-live="polite">
+            <!-- Initial Bot Message -->
+            <div class="message bot-message" role="status">
+                <div class="message-content">
+                    Hello! I'm MediBot, your medical AI assistant. How can I help you today?
+                </div>
+                <div class="message-timestamp" aria-hidden="true">
+                    {{ now|datetimeformat("%I:%M %p") }}
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Indicator -->
+        <div class="loading-indicator hidden" id="loading">
+            <div class="dot-flashing"></div>
+        </div>
+
+        <div class="input-container" role="form">
+            <input 
+                type="text" 
+                placeholder="Ask your medical question..." 
+                id="user-input"
+                aria-label="Type your medical question here"
+                autocomplete="off"
+            >
+            <button 
+                id="send-button"
+                aria-label="Send message"
+                type="button"
+                tabindex="0"
+            >
+                Send
+            </button>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>     
