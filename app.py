@@ -22,8 +22,10 @@ def datetimeformat(value, format='%I:%M %p'):
     return value
 
 # Set Hugging Face API token securely
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = os.getenv("HUGGINGFACEHUB_API_TOKEN")
-
+token = os.getenv("HUGGINGFACEHUB_API_TOKEN")
+if not token:
+    raise ValueError("HUGGINGFACEHUB_API_TOKEN environment variable is not set.")
+os.environ["HUGGINGFACEHUB_API_TOKEN"] = token
 # Inference client setup
 client = InferenceClient(
     model="HuggingFaceH4/zephyr-7b-beta",
